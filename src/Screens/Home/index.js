@@ -24,6 +24,20 @@ export default function Home(props) {
         onPress={() => navigation.navigate('Scale')}>
         <Text style={txtBtn}>Scale</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={btn}
+        onPress={() => navigation.navigate('Width_Height')}>
+        <Text style={txtBtn}>Width e Height</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={btn}
+        onPress={() => navigation.navigate('PositionAbsolute')}>
+        <Text style={txtBtn}>Position Absolute</Text>
+      </TouchableOpacity>
+
+
     </View>
   );
 }
