@@ -5,23 +5,38 @@ import style from './style';
 export default function() {
   const {container, box} = style;
   const [animation] = useState(new Animated.Value(0));
+  const [isRunAnimation, setIsRunAnimation] = useState(false);
+
+  const rotateInterpolate = animation.interpolate({
+    inputRange: [0, 360],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  const animationStyle = {
+    transform: [
+      {
+        rotate: rotateInterpolate,
+      },
+    ],
+  };
 
   function startAnimation() {
+    if (isRunAnimation) {
+      return;
+    }
+    setIsRunAnimation(true);
     Animated.timing(animation, {
-      toValue: 300,
+      toValue: 360,
       duration: 1500,
     }).start(() => {
       Animated.timing(animation, {
         toValue: 0,
         duration: 1500,
-      }).start();
+      }).start(() => {
+        setIsRunAnimation(false);
+      });
     });
   }
-
-  const animationStyle = {
-    top: animation,
-    left: animation,
-  };
 
   return (
     <View style={container}>
